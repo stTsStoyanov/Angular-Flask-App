@@ -1,0 +1,22 @@
+<h1>Age Calculator</h1>
+<form #personForm ="ngForm" (ngSubmit)="submitForm()">
+  <label for="name" >Name:</label>
+  <input name="name" maxlength="25" type="text" id="name" [(ngModel)]="name" required>
+  <label for="birthday">Birthday:</label>
+  <input name="birthDay" type="date" id="birthday" [(ngModel)]="birthday" required>
+  <button type="submit" [disabled]="!personForm.form.valid">Submit</button>
+</form>
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of people">
+      <td>{{ person.name }}</td>
+      <td>{{ person.age }}</td>
+    </tr>
+  </tbody>
+</table> -->
