@@ -7,12 +7,14 @@ import { HomeComponent } from './home/home.component';
 import { PersonInfoFormComponent } from './personInfoForm/personInfoForm.component';
 import { FormsModule } from '@angular/forms';
 import { PersonApi } from 'src/apis/personApi';
+import { PersonListComponent } from './personList/personList.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
       HomeComponent,
       PersonInfoFormComponent,
+      PersonListComponent
    ],
   imports: [
     BrowserModule,

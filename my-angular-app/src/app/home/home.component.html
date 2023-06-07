@@ -1,1 +1,3 @@
-<app-personInfoForm (newPersonEvent)="addNewPerson"></app-personInfoForm>
+
+<app-personInfoForm (newPersonEvent)="addNewPerson($event)"></app-personInfoForm>
+<app-personList [people]="people"></app-personList>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { PersonApi } from 'src/apis/personApi';
 import { Person } from 'src/person';
 
@@ -20,7 +21,7 @@ export class PersonInfoFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  async submitForm() {
+  async submitForm(personForm: NgForm) {
     const age = await this.personApi.calculateAge(this.birthday) // promise
     this.newPersonEvent.emit({ name: this.name, age: age })
   }
