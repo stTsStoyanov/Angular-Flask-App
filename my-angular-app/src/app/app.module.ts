@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PersonInfoFormComponent } from './personInfoForm/personInfoForm.component';
 import { FormsModule } from '@angular/forms';
-import { PersonApi } from 'src/apis/personApi';
+import { PersonApi } from 'src/apis/PersonApi';
 import { PersonListComponent } from './personList/personList.component';
 
 @NgModule({

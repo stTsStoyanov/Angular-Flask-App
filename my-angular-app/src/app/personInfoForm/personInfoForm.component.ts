@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { PersonApi } from 'src/apis/personApi';
+import { ApiError } from 'src/apis/ApiError';
+import { PersonApi } from 'src/apis/PersonApi';
+
 import { Person } from 'src/person';
 
 @Component({
@@ -11,7 +13,8 @@ import { Person } from 'src/person';
 export class PersonInfoFormComponent implements OnInit {
   name = '';
   birthday = '';
-
+  serverSideError?: string;
+  dateLimit = Date.now();
   @Output() newPersonEvent = new EventEmitter<Person>();
 
   constructor(private personApi: PersonApi) {
@@ -22,8 +25,20 @@ export class PersonInfoFormComponent implements OnInit {
   }
 
   async submitForm(personForm: NgForm) {
-    const age = await this.personApi.calculateAge(this.birthday) // promise
-    this.newPersonEvent.emit({ name: this.name, age: age })
+    this.serverSideError = undefined; // clear the error message
+    try{
+      const age = await this.personApi.calculateAge(this.birthday) // promise
+      this.newPersonEvent.emit({ name: this.name, age: age })
+    }
+    catch(error){
+      if(error instanceof ApiError){
+        this.serverSideError = error.message;
+        return
+      }
+
+      throw error;
+    }
+
   }
 
 }
