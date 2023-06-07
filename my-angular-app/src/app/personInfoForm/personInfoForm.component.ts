@@ -1,10 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PersonApi } from 'src/apis/personApi';
-
-interface Person {
-  name: string;
-  age: number;
-}
+import { Person } from 'src/person';
 
 @Component({
   selector: 'app-personInfoForm',
@@ -15,6 +11,8 @@ export class PersonInfoFormComponent implements OnInit {
   name = '';
   birthday = '';
 
+  @Output() newPersonEvent = new EventEmitter<Person>();
+
   constructor(private personApi: PersonApi) {
 
   }
@@ -22,8 +20,9 @@ export class PersonInfoFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitForm(){
-    
+  async submitForm() {
+    const age = await this.personApi.calculateAge(this.birthday) // promise
+    this.newPersonEvent.emit({ name: this.name, age: age })
   }
 
 }
