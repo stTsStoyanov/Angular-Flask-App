@@ -1,4 +1,4 @@
-<h1>Age Calculator</h1>
+<!-- <h1>Age Calculator</h1>
 <form #personForm ="ngForm" (ngSubmit)="submitForm(personForm)">
   <label for="name" >Name:</label>
   <input name="name" maxlength="25" type="text" id="name" [(ngModel)]="name" required>
@@ -8,4 +8,28 @@
   <div *ngIf="serverSideError">
     {{serverSideError}}
   </div>
-</form>
+</form> -->
+
+
+  <div class="container">
+    <h1>Age Calculator</h1>
+    <div class="formDesign">
+      <form #personForm="ngForm" (ngSubmit)="submitForm(personForm)">
+        <label for="name">Name:</label>
+        <input name="name" maxlength="25" type="text" id="name" [(ngModel)]="name" required>
+      
+        <label for="birthday">Birthday:</label>
+        <input name="birthDay" max="{{ dateLimit | date:'yyyy-MM-dd' }}" type="date" id="birthday" [(ngModel)]="birthday" required>
+      
+        <button type="submit" [disabled]="!personForm.form.valid">Submit</button>
+      
+        <div *ngIf="serverSideError">
+          {{ serverSideError }}
+        </div>
+      </form>
+    </div>
+
+  </div>
+  
+  
+
