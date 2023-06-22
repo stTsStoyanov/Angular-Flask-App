@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request
 from datetime import date, datetime
 from flask_cors import CORS, cross_origin
-from flask_swagger import swagger
+# from flask_swagger import swagger
+from flask_swagger_ui import get_swaggerui_blueprint
 
 app = Flask(__name__)
 CORS(app)
